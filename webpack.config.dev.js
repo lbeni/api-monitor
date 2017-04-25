@@ -1,10 +1,12 @@
 const path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   //context: path.join(__dirname, 'src'),
   entry: [
     //polyfills
+    'webpack-hot-middleware/client',
     'react-hot-loader/patch',
     './client/main.js'
   ],
@@ -37,5 +39,7 @@ module.exports = {
     title: 'Api Monitor',
     appMountId: 'app'
     //devServer: 'http://localhost:3000',
-  })]
+  }),
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin()]
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 const webpackConfigDev = require('../webpack.config.dev.js');
 
@@ -22,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
     }
     //historyApiFallback: true,
   }));
-  //app.use(webpackHotMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler));
 }
 
 const server = app.listen(3000, function() {
